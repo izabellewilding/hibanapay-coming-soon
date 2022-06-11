@@ -1,122 +1,179 @@
-import * as React from "react"
-import { Link } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
+import React from "react";
+import Seo from "../components/seo";
+import styled from "@emotion/styled";
+import "../styles/global.css";
+import LogoSVG from "../assets/logo.svg";
+import { MessageBubble } from "../components/MessageBubble";
+import { Form } from "../components/Form";
+import { H1, H2, Body2 } from "../components/Fonts";
+// import useMedia from "use-media";
 
-import Layout from "../components/layout"
-import Seo from "../components/seo"
-import * as styles from "../components/index.module.css"
+const Layout = styled.main`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  font-family: outfit;
 
-const links = [
-  {
-    text: "Tutorial",
-    url: "https://www.gatsbyjs.com/docs/tutorial",
-    description:
-      "A great place to get started if you're new to web development. Designed to guide you through setting up your first Gatsby site.",
-  },
-  {
-    text: "Examples",
-    url: "https://github.com/gatsbyjs/gatsby/tree/master/examples",
-    description:
-      "A collection of websites ranging from very basic to complex/complete that illustrate how to accomplish specific tasks within your Gatsby sites.",
-  },
-  {
-    text: "Plugin Library",
-    url: "https://www.gatsbyjs.com/plugins",
-    description:
-      "Learn how to add functionality and customize your Gatsby site or app with thousands of plugins built by our amazing developer community.",
-  },
-  {
-    text: "Build and Host",
-    url: "https://www.gatsbyjs.com/cloud",
-    description:
-      "Now you’re ready to show the world! Give your Gatsby site superpowers: Build and host on Gatsby Cloud. Get started for free!",
-  },
-]
+  @media screen and (min-width: 1224px) {
+    flex-direction: row;
+    justify-content: center;
+  }
+`;
 
-const samplePageLinks = [
-  {
-    text: "Page 2",
-    url: "page-2",
-    badge: false,
-    description:
-      "A simple example of linking to another page within a Gatsby site",
-  },
-  { text: "TypeScript", url: "using-typescript" },
-  { text: "Server Side Rendering", url: "using-ssr" },
-  { text: "Deferred Static Generation", url: "using-dsg" },
-]
+const Title = styled.h1`
+  ${H1}
 
-const moreLinks = [
-  { text: "Join us on Discord", url: "https://gatsby.dev/discord" },
-  {
-    text: "Documentation",
-    url: "https://gatsbyjs.com/docs/",
-  },
-  {
-    text: "Starters",
-    url: "https://gatsbyjs.com/starters/",
-  },
-  {
-    text: "Showcase",
-    url: "https://gatsbyjs.com/showcase/",
-  },
-  {
-    text: "Contributing",
-    url: "https://www.gatsbyjs.com/contributing/",
-  },
-  { text: "Issues", url: "https://github.com/gatsbyjs/gatsby/issues" },
-]
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0 20px 0;
 
-const utmParameters = `?utm_source=starter&utm_medium=start-page&utm_campaign=default-starter`
+  @media screen and (min-width: 720px) {
+    flex-direction: row;
+    text-align: left;
+    margin-top: 24px;
+    white-space: nowrap;
+    margin-bottom: 18px;
+  }
+`;
 
-const IndexPage = () => (
-  <Layout>
-    <Seo title="Home" />
-    <div className={styles.textCenter}>
-      <StaticImage
-        src="../images/example.png"
-        loading="eager"
-        width={64}
-        quality={95}
-        formats={["auto", "webp", "avif"]}
-        alt=""
-        style={{ marginBottom: `var(--space-3)` }}
-      />
-      <h1>
-        Welcome to <b>Gatsby!</b>
-      </h1>
-      <p className={styles.intro}>
-        <b>Example pages:</b>{" "}
-        {samplePageLinks.map((link, i) => (
-          <React.Fragment key={link.url}>
-            <Link to={link.url}>{link.text}</Link>
-            {i !== samplePageLinks.length - 1 && <> · </>}
-          </React.Fragment>
-        ))}
-        <br />
-        Edit <code>src/pages/index.js</code> to update this page.
-      </p>
-    </div>
-    <ul className={styles.list}>
-      {links.map(link => (
-        <li key={link.url} className={styles.listItem}>
-          <a
-            className={styles.listItemLink}
-            href={`${link.url}${utmParameters}`}
-          >
-            {link.text} ↗
-          </a>
-          <p className={styles.listItemDescription}>{link.description}</p>
-        </li>
-      ))}
-    </ul>
-    {moreLinks.map((link, i) => (
-      <React.Fragment key={link.url}>
-        <a href={`${link.url}${utmParameters}`}>{link.text}</a>
-        {i !== moreLinks.length - 1 && <> · </>}
-      </React.Fragment>
-    ))}
-  </Layout>
-)
+const PrimaryContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 
-export default IndexPage
+  @media screen and (min-width: 720px) {
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  @media screen and (min-width: 1224px) {
+    width: 50%;
+  }
+`;
+
+const Inner = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 550px;
+  margin: auto;
+  padding: 40px 0px 40px 0px;
+
+  @media screen and (min-width: 720px) {
+    padding: 120px 0px 100px 0px;
+    align-items: flex-start;
+  }
+`;
+
+const Subtitle = styled.h2`
+  ${H2}
+  font-size: 18px;
+  text-align: center;
+  margin-bottom: 50px;
+
+  @media screen and (max-width: 400px) {
+    text-align: start;
+  }
+`;
+
+const MessageContainer = styled.section`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 40px 0px 40px 0px;
+  width: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(253, 75, 14, 1) 0%,
+    rgba(199, 52, 126, 1) 50%,
+    rgba(143, 26, 241, 1) 100%
+  );
+
+  @media screen and (min-width: 720px) {
+    padding: 100px 0px 100px 0px;
+  }
+
+  @media screen and (min-width: 1224px) {
+    width: 50%;
+    padding: 0;
+  }
+`;
+
+const MessageContainerInner = styled.div`
+  margin: 0 20px 0 20px;
+`;
+
+const ContactDetails = styled.p`
+  ${Body2}
+  padding: 14px 0 42px 0;
+  max-width: 217px;
+  margin: auto;
+
+  @media screen and (min-width: 720px) {
+    text-align: start;
+  }
+`;
+
+const Logo = styled(LogoSVG)`
+  width: 83.23px;
+  height: 80px;
+`;
+
+const IndexPage = () => {
+  // const isDesktop = useMedia({ minWidth: "1224px" });
+
+  return (
+    <>
+      <Seo title="Home" />
+      <Layout>
+        <PrimaryContainer>
+          <Inner>
+            <Logo />
+
+            <Title>
+              <span>HibanaPay</span>
+              <span>&nbsp;is coming soon</span>
+            </Title>
+            <Subtitle>Fast, efficient and secure open banking.</Subtitle>
+            <Form />
+          </Inner>
+
+          <ContactDetails>
+            Contact: info@hibanapay.com Developed by{" "}
+            <a href="https://www.velopayments.com/" target="_blank">
+              Velo Payments
+            </a>
+          </ContactDetails>
+        </PrimaryContainer>
+        <MessageContainer>
+          <MessageContainerInner>
+            <MessageBubble
+              title="Fast Setup"
+              message="Register and start requesting open banking payments in minutes."
+            />
+            <MessageBubble
+              title="Lower costs, faster payments"
+              message="Leverage open banking technology to save on traditional costs and receive your money instantly."
+            />
+            <MessageBubble
+              title="Collect the information you need"
+              message="Curate your payment requests to gather information from your customers, with your own branding and QR codes."
+            />
+          </MessageContainerInner>
+        </MessageContainer>
+        {/* {!isDesktop && (
+          <ContactDetails>
+            Contact: info@hibanapay.com Developed by{" "}
+            <a href="">Velo Payments</a>
+          </ContactDetails>
+        )} */}
+      </Layout>
+    </>
+  );
+};
+
+export default IndexPage;
