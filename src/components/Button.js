@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { Body2 } from "./Fonts";
+import { Button as ButtonFont } from "./Fonts";
 
 const StyledButton = styled.button`
-  ${Body2}
+  ${ButtonFont}
   color: white;
   text-align: center;
-
   background-color: #181e52;
+
   &:hover {
     background-color: #283070;
   }
