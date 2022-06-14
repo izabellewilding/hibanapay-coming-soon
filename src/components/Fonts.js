@@ -39,3 +39,10 @@ export const Body2 = css`
   font-weight: 300;
   text-align: center;
 `;
+
+export const Button = css`
+  font-family: var(--main-font-family);
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+`;
