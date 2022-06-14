@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Button } from "../components/Button";
 import { Body1 } from "./Fonts";
 import styled from "@emotion/styled";
@@ -49,6 +49,23 @@ const InputWrapper = styled.div`
 `;
 
 export const Form = () => {
+  const email = useRef();
+
+  const onSubmit = e => {
+    if (
+      !String(email.current.value)
+        .toLowerCase()
+        .match(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        )
+    ) {
+      return false;
+    }
+
+    e.preventDefault();
+    window.location.href = `mailto:info@hibanapay.com?subject=Early access request: ${email.current.value}&body=Requesting access to HibanaPay.`;
+  };
+
   return (
     <FormContainer>
       <Description>
@@ -56,8 +73,12 @@ export const Form = () => {
         and we will get in touch.
       </Description>
       <InputWrapper>
-        <StyledInput placeholder="Please enter your email address" />
-        <Button />
+        <StyledInput
+          ref={email}
+          type="email"
+          placeholder="Please enter your email address"
+        />
+        <Button onClick={onSubmit} />
       </InputWrapper>
     </FormContainer>
   );

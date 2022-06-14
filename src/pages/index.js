@@ -115,15 +115,15 @@ const MessageContainerInner = styled.div`
   
   }
 
-  div:first-child {
+  div:first-of-type {
     animation-delay: 0.05s;
   }
 
-  div:nth-child(2) {
+  div + div {
     animation-delay: 1.25s;
   }
 
-  div:last-child {
+  div + div + div {
     animation-delay: 2.25s;
   }
 
@@ -176,7 +176,11 @@ const IndexPage = () => {
 
           <ContactDetails>
             Contact: info@hibanapay.com Developed by{" "}
-            <a href="https://www.velopayments.com/" target="_blank">
+            <a
+              href="https://www.velopayments.com/"
+              rel="noreferrer"
+              target="_blank"
+            >
               Velo Payments
             </a>
           </ContactDetails>

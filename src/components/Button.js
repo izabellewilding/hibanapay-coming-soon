@@ -33,6 +33,6 @@ const StyledButton = styled.button`
   }
 `;
 
-export const Button = () => {
-  return <StyledButton>Request early access</StyledButton>;
+export const Button = props => {
+  return <StyledButton {...props}>Request early access</StyledButton>;
 };
