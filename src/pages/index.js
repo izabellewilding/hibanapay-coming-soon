@@ -105,6 +105,38 @@ const MessageContainer = styled.section`
 
 const MessageContainerInner = styled.div`
   margin: 0 20px 0 20px;
+
+  /** set animations on the children */
+  div {
+    opacity: 0;
+    animation: incoming 1.2s cubic-bezier(0, 1, 0.75, 1) forwards;
+    /*animation: animation-name animation-duration animation-direction animation-iteration-count */  
+    transition: .25s ease-in-out;
+  
+  }
+
+  div:first-child {
+    animation-delay: 0.05s;
+  }
+
+  div:nth-child(2) {
+    animation-delay: 1.25s;
+  }
+
+  div:last-child {
+    animation-delay: 2.25s;
+  }
+
+  @keyframes incoming {
+    0%{
+      transform: translateY(300px);
+      opacity: 0;
+    }
+    100%{
+      transform: translateY(0px);
+      opacity: 1
+    }
+
 `;
 
 const ContactDetails = styled.p`
